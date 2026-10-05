@@ -1,0 +1,39 @@
+@model GiveAid.Models.Donation
+@{
+    ViewData["Title"] = "Donation Transaction Details";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold text-dark mb-0">Donation Transaction Details</h3>
+        <a asp-action="Index" class="btn btn-outline-secondary btn-sm">Back to Donations</a>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-3 p-4 bg-white" style="max-width: 600px;">
+        <h5 class="fw-bold text-success mb-3 border-bottom pb-2">Verified Transaction</h5>
+        
+        <div class="mb-3">
+            <label class="text-muted small">Transaction Receipt ID:</label>
+            <div class="fw-bold fs-5">#GA-@Model.Id.ToString("D6")</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="text-muted small">Welfare Cause:</label>
+            <div class="fw-semibold">@(Model.Cause?.CauseName ?? "General Welfare")</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="text-muted small">Amount Donated:</label>
+            <div class="fw-bold text-success fs-4">PKR @Model.Amount.ToString("N0")</div>
+        </div>
+
+        <div class="mb-3">
+            <label class="text-muted small">Donor ID / Email:</label>
+            <div class="text-dark">@(string.IsNullOrWhiteSpace(Model.UserId) ? "Anonymous Donor" : Model.UserId)</div>
+        </div>
+
+        <div class="mt-4 pt-3 border-top">
+            <a asp-action="Index" class="btn btn-light btn-sm px-4">Back to List</a>
+        </div>
+    </div>
+</div>

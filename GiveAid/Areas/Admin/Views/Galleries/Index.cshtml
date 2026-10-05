@@ -1,0 +1,67 @@
+@model IEnumerable<GiveAid.Models.Gallery>
+@{
+    ViewData["Title"] = "Gallery Management";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="fw-bold text-dark mb-0">Welfare Gallery Photos</h3>
+            <small class="text-muted">Manage photos that appear in the public gallery section.</small>
+        </div>
+        <a asp-action="Create" class="btn btn-primary btn-sm">
+            <i class="fas fa-plus-circle me-1"></i> Upload New Photo
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-3 bg-white overflow-hidden">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width: 120px;">Image</th>
+                        <th>Title / Caption</th>
+                        <th class="text-end" style="width: 180px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="@item.ImagePath" class="rounded-3 shadow-sm" style="width: 80px; height: 60px; object-fit: cover;" onerror="this.src='https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=200';" />
+                                </td>
+                                <td>
+                                    <strong class="text-dark">@item.Title</strong>
+                                </td>
+                                <td class="text-end">
+                                    <div class="btn-group btn-group-sm">
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-secondary" title="Details">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger" title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center text-muted py-4">
+                                No photos uploaded yet. Click "Upload New Photo" to add one.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

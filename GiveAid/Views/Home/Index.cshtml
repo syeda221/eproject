@@ -1,8 +1,262 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@model GiveAid.Models.HomeViewModel
+@{
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Clean Hero Section -->
+<section class="position-relative text-white py-5" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.88)), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1600') center/cover no-repeat; min-height: 440px;">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <span class="badge bg-primary px-3 py-2 rounded-pill text-uppercase fw-semibold mb-3">
+                    <i class="fas fa-hand-holding-heart me-1"></i> Transparent Humanitarian Network
+                </span>
+                <h1 class="display-4 fw-bold mb-3 text-white">Empowering Underprivileged Communities Together</h1>
+                <p class="lead mb-4 text-white-50 mx-auto" style="max-width: 680px;">
+                    GiveAid coordinates resources across certified NGOs to provide emergency relief, healthcare checkups, and quality education for marginalized families.
+                </p>
+                <div class="d-flex flex-wrap gap-3 justify-content-center">
+                    <a asp-controller="Donate" asp-action="Index" class="btn btn-success btn-lg px-4 fw-semibold shadow-sm">
+                        <i class="fas fa-hand-holding-usd me-1"></i> Make a Donation
+                    </a>
+                    <a href="#causesSection" class="btn btn-outline-light btn-lg px-4">
+                        <i class="fas fa-list-alt me-1"></i> View All Causes
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Metrics Bar -->
+<section class="bg-white border-bottom py-4 shadow-sm">
+    <div class="container">
+        <div class="row text-center g-3">
+            <div class="col-6 col-md-3 border-end">
+                <h3 class="fw-bold text-dark mb-0">@(Model.NGOs?.Count ?? 0)+</h3>
+                <small class="text-muted text-uppercase fw-semibold">Partner NGOs</small>
+            </div>
+            <div class="col-6 col-md-3 border-end">
+                <h3 class="fw-bold text-dark mb-0">@(Model.Causes?.Count ?? 0)+</h3>
+                <small class="text-muted text-uppercase fw-semibold">Welfare Causes</small>
+            </div>
+            <div class="col-6 col-md-3 border-end">
+                <h3 class="fw-bold text-dark mb-0">@(Model.Programmes?.Count ?? 0)+</h3>
+                <small class="text-muted text-uppercase fw-semibold">Active Programmes</small>
+            </div>
+            <div class="col-6 col-md-3">
+                <h3 class="fw-bold text-success mb-0">100%</h3>
+                <small class="text-muted text-uppercase fw-semibold">Direct Aid Delivery</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Active Causes Section -->
+<section class="py-5 bg-light" id="causesSection">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="text-primary text-uppercase fw-bold small tracking-wider">Direct Contribution</span>
+            <h2 class="fw-bold mt-1">Featured Welfare Causes</h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">Select an appeal to make a direct impact on nutrition, shelter, and medical support.</p>
+        </div>
+
+        <div class="row g-4">
+            @if (Model.Causes != null && Model.Causes.Any())
+            {
+                @foreach (var cause in Model.Causes)
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 border-0 shadow-sm rounded-3 bg-white">
+                            <div class="card-body p-4 d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="d-inline-flex p-3 bg-primary bg-opacity-10 text-primary rounded-3 mb-3">
+                                        <i class="fas fa-hands-helping fa-lg"></i>
+                                    </div>
+                                    <h5 class="fw-bold text-dark mb-2">@cause.CauseName</h5>
+                                    <p class="text-muted small">Supporting essential resources, medical kits, and education initiatives for this community appeal.</p>
+                                </div>
+                                <div class="mt-3 pt-3 border-top">
+                                    <a asp-controller="Donate" asp-action="Index" asp-route-causeId="@cause.Id" class="btn btn-outline-success w-100 fw-semibold">
+                                        <i class="fas fa-donate me-1"></i> Donate to Cause
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center text-muted py-4">
+                    <p>No active causes listed at the moment.</p>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Upcoming Welfare Programmes -->
+<section class="py-5 bg-white" id="programmesSection">
+    <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-end mb-4">
+            <div>
+                <span class="text-success text-uppercase fw-bold small">Field Initiatives</span>
+                <h2 class="fw-bold mt-1 mb-0">Upcoming NGO Programmes & Events</h2>
+            </div>
+            <a href="#volunteerModal" data-bs-toggle="modal" class="btn btn-outline-primary btn-sm rounded-pill mt-3 mt-md-0 px-3">
+                <i class="fas fa-user-plus me-1"></i> Volunteer with Us
+            </a>
+        </div>
+
+        <div class="row g-4">
+            @if (Model.Programmes != null && Model.Programmes.Any())
+            {
+                @foreach (var prog in Model.Programmes)
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 border rounded-3 p-3 bg-light">
+                            <div class="card-body p-2">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge bg-secondary">Event</span>
+                                    <small class="text-muted"><i class="fas fa-building me-1"></i>@(prog.Ngo?.NgoName ?? "Partner NGO")</small>
+                                </div>
+                                <h6 class="fw-bold text-dark mt-2 mb-2">@prog.ProgrammeName</h6>
+                                <p class="text-muted small mb-3">On-ground initiative organized to provide healthcare, education, or specialized support.</p>
+                                <button type="button" class="btn btn-sm btn-outline-dark w-100" data-bs-toggle="modal" data-bs-target="#volunteerModal" data-prog-id="@prog.Id" data-prog-name="@prog.ProgrammeName">
+                                    <i class="fas fa-check-circle me-1 text-success"></i> Express Interest
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center text-muted py-4">
+                    <p>No programmes scheduled currently.</p>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Associated NGOs Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="text-secondary text-uppercase fw-bold small">Our Network</span>
+            <h2 class="fw-bold mt-1">Associated NGOs on GiveAid</h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">Authentic, registered charitable organizations working in partnership with GiveAid.</p>
+        </div>
+
+        <div class="row g-4">
+            @if (Model.NGOs != null && Model.NGOs.Any())
+            {
+                @foreach (var ngo in Model.NGOs)
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 border-0 shadow-sm rounded-3 p-4 bg-white">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="bg-light text-primary rounded-3 p-3 me-3">
+                                    <i class="fas fa-university fa-lg"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold text-dark mb-0">@ngo.NgoName</h6>
+                                    <small class="text-muted">Verified Foundation</small>
+                                </div>
+                            </div>
+                            <p class="text-muted small mb-0">@(string.IsNullOrWhiteSpace(ngo.Description) ? "Committed NGO driving welfare projects." : ngo.Description)</p>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center text-muted">
+                    <p>NGO partners will appear here once registered.</p>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Section -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="text-info text-uppercase fw-bold small">Impact in Pictures</span>
+            <h2 class="fw-bold mt-1">Welfare Activities Gallery</h2>
+            <p class="text-muted">Real moments from field relief, educational workshops, and community camps.</p>
+        </div>
+
+        <div class="row g-3">
+            @if (Model.Galleries != null && Model.Galleries.Any())
+            {
+                @foreach (var item in Model.Galleries)
+                {
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card border-0 shadow-sm rounded-3 overflow-hidden h-100">
+                            <img src="@item.ImagePath" class="card-img-top" alt="@item.Title" style="height: 220px; object-fit: cover;" onerror="this.src='https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=600';" />
+                            <div class="card-body p-3 bg-light">
+                                <h6 class="fw-semibold text-dark small mb-0">@item.Title</h6>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-md-4 col-sm-6">
+                    <div class="card border-0 shadow-sm rounded-3 overflow-hidden h-100">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=600" class="card-img-top" style="height: 220px; object-fit: cover;" alt="Education Drive" />
+                        <div class="card-body p-3 bg-light"><h6 class="fw-semibold text-dark small mb-0">Child Education Initiative</h6></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="card border-0 shadow-sm rounded-3 overflow-hidden h-100">
+                        <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=600" class="card-img-top" style="height: 220px; object-fit: cover;" alt="Medical Checkup" />
+                        <div class="card-body p-3 bg-light"><h6 class="fw-semibold text-dark small mb-0">Community Health Camp</h6></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="card border-0 shadow-sm rounded-3 overflow-hidden h-100">
+                        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=600" class="card-img-top" style="height: 220px; object-fit: cover;" alt="Food Ration Distribution" />
+                        <div class="card-body p-3 bg-light"><h6 class="fw-semibold text-dark small mb-0">Ration Distribution Drive</h6></div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Volunteer Modal -->
+<div class="modal fade" id="volunteerModal" tabindex="-1" aria-labelledby="volunteerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <form asp-controller="Home" asp-action="JoinProgramme" method="post">
+                @Html.AntiForgeryToken()
+                <div class="modal-header bg-dark text-white">
+                    <h6 class="modal-title fw-bold" id="volunteerModalLabel"><i class="fas fa-hands-helping me-2 text-primary"></i>Express Interest in Programme</h6>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-muted small mb-3">Leave your details and our NGO project manager will contact you with orientation schedules.</p>
+                    <input type="hidden" name="programmeId" id="modalProgId" value="1" />
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold">Your Full Name <span class="text-danger">*</span></label>
+                        <input type="text" name="volunteerName" class="form-control" placeholder="e.g. Alex Johnson" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold">Your Email Address <span class="text-danger">*</span></label>
+                        <input type="email" name="volunteerEmail" class="form-control" placeholder="alex@example.com" required />
+                    </div>
+                </div>
+                <div class="modal-footer bg-light border-0">
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-sm btn-primary px-3"><i class="fas fa-check me-1"></i> Submit Registration</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

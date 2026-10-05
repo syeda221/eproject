@@ -1,0 +1,227 @@
+@model GiveAid.Models.DonationFormViewModel
+@{
+    ViewData["Title"] = "Make a Donation";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Header Banner -->
+            <div class="card border-0 shadow-sm rounded-3 mb-4 bg-dark text-white p-4 p-md-5 text-center">
+                <span class="text-primary text-uppercase fw-bold small mb-2">GiveAid Giving Portal</span>
+                <h2 class="fw-bold mb-2">Direct Humanitarian Support</h2>
+                <p class="text-white-50 lead fs-6 mb-0 mx-auto" style="max-width: 600px;">
+                    Choose a welfare cause to provide urgent food, medical checkups, and education aid directly to disadvantaged families.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Donation Form Column -->
+                <div class="col-md-7">
+                    <div class="card border-0 shadow-sm rounded-3 p-4 bg-white">
+                        <h5 class="fw-bold mb-3 text-dark border-bottom pb-2">
+                            <i class="fas fa-hand-holding-usd text-primary me-2"></i>Donation Details
+                        </h5>
+                        
+                        <form asp-controller="Donate" asp-action="Process" method="post" id="donationForm" novalidate>
+                            @Html.AntiForgeryToken()
+
+                            <div asp-validation-summary="All" class="text-danger small mb-3"></div>
+
+                            <!-- 1. Select Cause -->
+                            <div class="mb-4">
+                                <label class="form-label small fw-semibold">1. Select a Welfare Cause <span class="text-danger">*</span></label>
+                                @if (Model.AvailableCauses != null && Model.AvailableCauses.Any())
+                                {
+                                    <select asp-for="CauseId" class="form-select form-select-lg" required>
+                                        @foreach (var cause in Model.AvailableCauses)
+                                        {
+                                            <option value="@cause.Id">@cause.CauseName</option>
+                                        }
+                                    </select>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-warning small">
+                                        <i class="fas fa-exclamation-circle me-1"></i> No causes listed.
+                                    </div>
+                                    <input type="hidden" asp-for="CauseId" value="1" />
+                                }
+                            </div>
+
+                            <!-- 2. Select Amount -->
+                            <div class="mb-4">
+                                <label class="form-label small fw-semibold">2. Choose Donation Amount (PKR) <span class="text-danger">*</span></label>
+                                <div class="d-flex gap-2 mb-2">
+                                    <button type="button" class="btn btn-outline-primary amount-preset flex-fill fw-bold" data-amount="500">PKR 500</button>
+                                    <button type="button" class="btn btn-outline-primary amount-preset flex-fill fw-bold active" data-amount="1000">PKR 1,000</button>
+                                    <button type="button" class="btn btn-outline-primary amount-preset flex-fill fw-bold" data-amount="2500">PKR 2,500</button>
+                                    <button type="button" class="btn btn-outline-primary amount-preset flex-fill fw-bold" data-amount="5000">PKR 5,000</button>
+                                </div>
+                                <div class="input-group input-group-lg mt-2">
+                                    <span class="input-group-text bg-light fw-bold">PKR</span>
+                                    <input type="number" asp-for="Amount" id="customAmount" class="form-control fw-bold fs-5" min="1" step="any" placeholder="Custom Amount" required />
+                                </div>
+                                <span asp-validation-for="Amount" class="text-danger small"></span>
+                            </div>
+
+                            <!-- 3. Payment Gateway Card Details -->
+                            <div class="card bg-light border-0 rounded-3 p-3 mb-4">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h6 class="fw-bold text-dark mb-0"><i class="fas fa-credit-card text-success me-2"></i>Payment Details</h6>
+                                    <div class="fs-5 text-muted">
+                                        <i class="fab fa-cc-visa text-primary me-1"></i>
+                                        <i class="fab fa-cc-mastercard text-danger me-1"></i>
+                                        <i class="fab fa-cc-amex text-info"></i>
+                                    </div>
+                                </div>
+                                <p class="small text-muted mb-3">Transactions are encrypted and validated securely.</p>
+
+                                <div class="mb-3">
+                                    <label class="form-label small fw-semibold">Cardholder Name <span class="text-danger">*</span></label>
+                                    <input type="text" asp-for="CardHolderName" id="cardHolder" class="form-control" placeholder="e.g. John Doe" required />
+                                    <div class="invalid-feedback">Cardholder name is required.</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label small fw-semibold">Card Number (16 Digits) <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input type="text" asp-for="CardNumber" id="cardNumber" class="form-control" maxlength="19" placeholder="4532 1234 5678 9012" required />
+                                        <span class="input-group-text bg-white text-muted"><i class="fas fa-lock small"></i></span>
+                                    </div>
+                                    <div class="invalid-feedback">Please enter a valid 16-digit card number.</div>
+                                </div>
+
+                                <div class="row g-2">
+                                    <div class="col-6">
+                                        <label class="form-label small fw-semibold">Expiry Date (MM/YY) <span class="text-danger">*</span></label>
+                                        <input type="text" asp-for="ExpiryDate" id="cardExpiry" class="form-control" maxlength="5" placeholder="MM/YY" required />
+                                        <div class="invalid-feedback">Format must be MM/YY.</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label small fw-semibold">CVV (3 Digits) <span class="text-danger">*</span></label>
+                                        <input type="password" asp-for="CVV" id="cardCvv" class="form-control" maxlength="3" placeholder="123" required />
+                                        <div class="invalid-feedback">Must be 3 digits.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-success btn-lg w-100 fw-bold py-3 shadow-sm" id="btnSubmitDonation">
+                                <i class="fas fa-check me-2"></i>Confirm & Complete Donation
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Info Column -->
+                <div class="col-md-5">
+                    <div class="card border-0 shadow-sm rounded-3 p-4 bg-white mb-4">
+                        <h6 class="fw-bold text-dark mb-3 border-bottom pb-2"><i class="fas fa-shield-alt text-primary me-2"></i>Why Donate with GiveAid?</h6>
+                        <ul class="list-unstyled small text-muted">
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-check-circle text-success me-2 mt-1"></i>
+                                <div><strong>100% Direct Allocation:</strong> Donations go directly to the verified causes you choose.</div>
+                            </li>
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-check-circle text-success me-2 mt-1"></i>
+                                <div><strong>Certified Partner NGOs:</strong> Verified non-profits with proven track records.</div>
+                            </li>
+                            <li class="mb-3 d-flex align-items-start">
+                                <i class="fas fa-check-circle text-success me-2 mt-1"></i>
+                                <div><strong>Digital Receipt:</strong> Instant confirmation and printable transaction record.</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card border-0 shadow-sm rounded-3 p-4 text-white bg-dark">
+                        <h6 class="fw-bold text-light mb-2"><i class="fas fa-headset text-primary me-2"></i>Donor Help Desk</h6>
+                        <p class="small text-white-50 mb-3">Our support team is available to assist with queries or corporate matching gifts.</p>
+                        <a asp-controller="Home" asp-action="HelpCentre" class="btn btn-sm btn-outline-light rounded-pill px-3">
+                            Visit Help Centre
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.amount-preset').click(function () {
+                $('.amount-preset').removeClass('active btn-primary text-white').addClass('btn-outline-primary');
+                $(this).addClass('active btn-primary text-white').removeClass('btn-outline-primary');
+                $('#customAmount').val($(this).data('amount'));
+            });
+
+            $('#cardNumber').on('input', function () {
+                let value = $(this).val().replace(/\D/g, '').substring(0, 16);
+                let formatted = value.match(/.{1,4}/g)?.join(' ') || value;
+                $(this).val(formatted);
+            });
+
+            $('#cardExpiry').on('input', function () {
+                let val = $(this).val().replace(/\D/g, '').substring(0, 4);
+                if (val.length >= 2) {
+                    $(this).val(val.substring(0, 2) + '/' + val.substring(2));
+                } else {
+                    $(this).val(val);
+                }
+            });
+
+            $('#cardCvv').on('input', function () {
+                $(this).val($(this).val().replace(/\D/g, '').substring(0, 3));
+            });
+
+            $('#donationForm').on('submit', function (e) {
+                let isValid = true;
+                
+                let amount = parseFloat($('#customAmount').val());
+                if (isNaN(amount) || amount <= 0) {
+                    $('#customAmount').addClass('is-invalid');
+                    isValid = false;
+                } else {
+                    $('#customAmount').removeClass('is-invalid');
+                }
+
+                let cardHolder = $('#cardHolder').val().trim();
+                if (cardHolder.length === 0) {
+                    $('#cardHolder').addClass('is-invalid');
+                    isValid = false;
+                } else {
+                    $('#cardHolder').removeClass('is-invalid');
+                }
+
+                let rawCardNumber = $('#cardNumber').val().replace(/\s/g, '');
+                if (rawCardNumber.length !== 16 || !/^\d{16}$/.test(rawCardNumber)) {
+                    $('#cardNumber').addClass('is-invalid');
+                    isValid = false;
+                } else {
+                    $('#cardNumber').removeClass('is-invalid');
+                }
+
+                let expiry = $('#cardExpiry').val().trim();
+                if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiry)) {
+                    $('#cardExpiry').addClass('is-invalid');
+                    isValid = false;
+                } else {
+                    $('#cardExpiry').removeClass('is-invalid');
+                }
+
+                let cvv = $('#cardCvv').val().trim();
+                if (cvv.length !== 3 || !/^\d{3}$/.test(cvv)) {
+                    $('#cardCvv').addClass('is-invalid');
+                    isValid = false;
+                } else {
+                    $('#cardCvv').removeClass('is-invalid');
+                }
+
+                if (!isValid) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        });
+    </script>
+}
