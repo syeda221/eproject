@@ -3,169 +3,289 @@
 }
 
 <div class="container py-4 py-md-5">
-    <!-- Header -->
-    <div class="card border-0 shadow-sm rounded-4 text-white p-4 p-md-5 mb-5 text-center" style="background: linear-gradient(135deg, #001f3f 0%, #002855 100%);">
-        <span class="badge bg-cyan text-white px-3 py-2 rounded-pill fw-bold text-uppercase mb-3 align-self-center">
+    <!-- Header Banner -->
+    <div class="card border-0 shadow-sm rounded-4 text-white p-4 p-md-5 mb-4 text-center" style="background: linear-gradient(135deg, #001f3f 0%, #002855 100%);">
+        <span class="badge bg-cyan text-white px-3 py-2 rounded-pill fw-bold text-uppercase mb-2 align-self-center">
             <i class="fas fa-info-circle me-1"></i> Who We Are
         </span>
-        <h1 class="display-5 fw-bold mb-2">About GiveAid Foundation</h1>
+        <h1 class="display-5 fw-bold mb-2">About GiveAid Welfare Foundation</h1>
         <p class="lead text-white-50 mx-auto mb-0" style="max-width: 750px;">
-            A unified humanitarian network bringing together certified NGOs to coordinate welfare, healthcare, education, and emergency aid for vulnerable communities.
+            A unified humanitarian platform bringing together certified NGOs to coordinate welfare, healthcare, education, and emergency aid for vulnerable communities.
         </p>
     </div>
 
-    <!-- Navigation Tabs / 7 Subsections -->
-    <div class="row g-4">
-        <div class="col-lg-3">
-            <div class="list-group shadow-sm rounded-4 sticky-top" style="top: 100px;">
-                <a class="list-group-item list-group-item-action active fw-bold py-3 bg-dark border-dark" href="#whatWeDo"><i class="fas fa-hand-holding-heart me-2 text-primary"></i>1. What We Do</a>
-                <a class="list-group-item list-group-item-action fw-semibold py-3" href="#ourMission"><i class="fas fa-bullseye me-2 text-primary"></i>2. Our Mission</a>
-                <a class="list-group-item list-group-item-action fw-semibold py-3" href="#ourTeam"><i class="fas fa-users me-2 text-primary"></i>3. Our Team</a>
-                <a class="list-group-item list-group-item-action fw-semibold py-3" href="#careerWithUs"><i class="fas fa-briefcase me-2 text-primary"></i>4. Career With Us</a>
-                <a class="list-group-item list-group-item-action fw-semibold py-3" href="#ourAchievements"><i class="fas fa-trophy me-2 text-primary"></i>5. Our Achievements</a>
-                <a class="list-group-item list-group-item-action fw-semibold py-3" href="#ourSupporters"><i class="fas fa-handshake me-2 text-primary"></i>6. Our Supporters</a>
-                <a class="list-group-item list-group-item-action fw-semibold py-3" href="#readAboutUs"><i class="fas fa-book-open me-2 text-primary"></i>7. Read About Us</a>
+    <!-- Clean Modern Nav Tabs (Interactive & Zero Sticky Overlap) -->
+    <div class="card border-0 shadow-sm rounded-4 bg-white p-3 mb-4">
+        <ul class="nav nav-pills nav-fill flex-column flex-md-row gap-2" id="aboutTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active btn-pill text-start text-md-center py-2 px-3 fw-semibold" id="what-tab" data-bs-toggle="pill" data-bs-target="#tabWhatWeDo" type="button" role="tab">
+                    <i class="fas fa-hand-holding-heart me-1 text-primary"></i> 1. What We Do
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link btn-pill text-start text-md-center py-2 px-3 fw-semibold text-secondary" id="mission-tab" data-bs-toggle="pill" data-bs-target="#tabMission" type="button" role="tab">
+                    <i class="fas fa-bullseye me-1 text-danger"></i> 2. Our Mission
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link btn-pill text-start text-md-center py-2 px-3 fw-semibold text-secondary" id="team-tab" data-bs-toggle="pill" data-bs-target="#tabTeam" type="button" role="tab">
+                    <i class="fas fa-users me-1 text-success"></i> 3. Our Team
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link btn-pill text-start text-md-center py-2 px-3 fw-semibold text-secondary" id="career-tab" data-bs-toggle="pill" data-bs-target="#tabCareer" type="button" role="tab">
+                    <i class="fas fa-briefcase me-1 text-warning"></i> 4. Career
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link btn-pill text-start text-md-center py-2 px-3 fw-semibold text-secondary" id="achieve-tab" data-bs-toggle="pill" data-bs-target="#tabAchievements" type="button" role="tab">
+                    <i class="fas fa-trophy me-1 text-info"></i> 5. Achievements
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link btn-pill text-start text-md-center py-2 px-3 fw-semibold text-secondary" id="supporters-tab" data-bs-toggle="pill" data-bs-target="#tabSupporters" type="button" role="tab">
+                    <i class="fas fa-handshake me-1 text-primary"></i> 6. Supporters
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link btn-pill text-start text-md-center py-2 px-3 fw-semibold text-secondary" id="media-tab" data-bs-toggle="pill" data-bs-target="#tabMedia" type="button" role="tab">
+                    <i class="fas fa-book-open me-1 text-danger"></i> 7. Read About Us
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Tab Content Panes -->
+    <div class="tab-content" id="aboutTabContent">
+        <!-- 1. What We Do -->
+        <div class="tab-pane fade show active" id="tabWhatWeDo" role="tabpanel">
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-circle">
+                        <i class="fas fa-hand-holding-heart fa-2x"></i>
+                    </div>
+                    <div>
+                        <h3 class="fw-bold text-dark mb-0">1. What We Do</h3>
+                        <p class="text-muted small mb-0">Grassroots welfare programs delivering direct impact</p>
+                    </div>
+                </div>
+                <p class="text-secondary leading-relaxed">
+                    GiveAid serves as a unified umbrella linking donors, volunteers, and certified non-governmental organizations. We channel verified donations directly into impactful community projects across health, child nutrition, and quality education:
+                </p>
+                <div class="row g-4 mt-2">
+                    <div class="col-md-4">
+                        <div class="p-4 bg-light rounded-4 text-center h-100 border">
+                            <i class="fas fa-book-reader text-warning fa-3x mb-3"></i>
+                            <h5 class="fw-bold text-dark">Free Education</h5>
+                            <p class="small text-muted mb-0">Providing textbooks, digital laptops, uniform kits, and tuition support to underprivileged children.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-4 bg-light rounded-4 text-center h-100 border">
+                            <i class="fas fa-stethoscope text-danger fa-3x mb-3"></i>
+                            <h5 class="fw-bold text-dark">Healthcare Camps</h5>
+                            <p class="small text-muted mb-0">Conducting free diagnostic screenings, maternal health checkups, and dispensing life-saving medications.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-4 bg-light rounded-4 text-center h-100 border">
+                            <i class="fas fa-wheelchair text-primary fa-3x mb-3"></i>
+                            <h5 class="fw-bold text-dark">Specially Challenged Aid</h5>
+                            <p class="small text-muted mb-0">Distributing wheelchairs, prosthetics, and rehabilitation therapy for persons with disabilities.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="col-lg-9">
-            <!-- 1. What We Do -->
-            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white" id="whatWeDo">
-                <h3 class="fw-bold text-dark mb-3"><i class="fas fa-hand-holding-heart text-primary me-2"></i>1. What We Do</h3>
-                <p class="text-secondary">
-                    GiveAid serves as a unified umbrella linking donors, volunteers, and certified non-governmental organizations. We channel verified funds directly into impactful grassroots projects:
-                </p>
-                <div class="row g-3 mt-2">
-                    <div class="col-md-4">
-                        <div class="p-3 bg-light rounded-4 text-center h-100 border">
-                            <i class="fas fa-book-reader text-warning fa-2x mb-2"></i>
-                            <h6 class="fw-bold text-dark">Free Education</h6>
-                            <p class="small text-muted mb-0">Providing books, tuition, and school kits to underprivileged children.</p>
-                        </div>
+        <!-- 2. Our Mission -->
+        <div class="tab-pane fade" id="tabMission" role="tabpanel">
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="bg-danger bg-opacity-10 text-danger p-3 rounded-circle">
+                        <i class="fas fa-bullseye fa-2x"></i>
                     </div>
-                    <div class="col-md-4">
-                        <div class="p-3 bg-light rounded-4 text-center h-100 border">
-                            <i class="fas fa-stethoscope text-danger fa-2x mb-2"></i>
-                            <h6 class="fw-bold text-dark">Healthcare Camps</h6>
-                            <p class="small text-muted mb-0">Free medical checkups, medicines, and specialized child care.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="p-3 bg-light rounded-4 text-center h-100 border">
-                            <i class="fas fa-wheelchair text-primary fa-2x mb-2"></i>
-                            <h6 class="fw-bold text-dark">Specially Challenged Aid</h6>
-                            <p class="small text-muted mb-0">Rehabilitation, prosthetics, and supportive equipment.</p>
-                        </div>
+                    <div>
+                        <h3 class="fw-bold text-dark mb-0">2. Our Mission & Vision</h3>
+                        <p class="text-muted small mb-0">Guiding principles of transparency and equality</p>
                     </div>
                 </div>
-            </div>
-
-            <!-- 2. Our Mission -->
-            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white" id="ourMission">
-                <h3 class="fw-bold text-dark mb-3"><i class="fas fa-bullseye text-primary me-2"></i>2. Our Mission</h3>
-                <p class="lead text-secondary fs-6">
-                    Our mission is to eliminate barriers preventing marginalized individuals from accessing healthcare, quality education, and clean nutrition through digital transparency.
+                <p class="lead text-secondary fs-6 mb-4">
+                    Our mission is to eliminate barriers preventing marginalized individuals from accessing healthcare, quality education, and clean nutrition through end-to-end digital transparency.
                 </p>
-                <div class="p-3 rounded-4 border-start border-primary border-4 bg-light">
-                    <em>"Transparent philanthropy empowers communities to rise out of poverty sustainably."</em>
+                <div class="p-4 rounded-4 border-start border-primary border-4 bg-light mb-4">
+                    <h5 class="fw-bold text-dark mb-1">Our Core Commitment</h5>
+                    <p class="text-secondary mb-0"><em>"Every single rupee donated is transparently audited and allocated directly to certified community initiatives."</em></p>
                 </div>
-            </div>
-
-            <!-- 3. Our Team -->
-            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white" id="ourTeam">
-                <h3 class="fw-bold text-dark mb-3"><i class="fas fa-users text-primary me-2"></i>3. Our Team</h3>
-                <p class="text-secondary mb-4">Dedicated professionals, social workers, and volunteer leaders managing operations on the ground:</p>
                 <div class="row g-3">
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-6">
                         <div class="p-3 bg-light rounded-4 border">
-                            <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 55px; height: 55px;">
-                                <i class="fas fa-user fa-lg"></i>
-                            </div>
-                            <h6 class="fw-bold text-dark mb-0">Sarah Jenkins</h6>
-                            <small class="text-muted">Executive Director</small>
+                            <h6 class="fw-bold text-dark"><i class="fas fa-check-circle text-success me-2"></i>100% Direct Allocation</h6>
+                            <p class="small text-muted mb-0">All donor contributions reach the field without administrative deductions.</p>
                         </div>
                     </div>
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-6">
                         <div class="p-3 bg-light rounded-4 border">
-                            <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 55px; height: 55px;">
-                                <i class="fas fa-user-md fa-lg"></i>
-                            </div>
-                            <h6 class="fw-bold text-dark mb-0">Dr. Tariq Mahmood</h6>
-                            <small class="text-muted">Medical Relief Head</small>
-                        </div>
-                    </div>
-                    <div class="col-md-4 text-center">
-                        <div class="p-3 bg-light rounded-4 border">
-                            <div class="bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 55px; height: 55px;">
-                                <i class="fas fa-hands-helping fa-lg"></i>
-                            </div>
-                            <h6 class="fw-bold text-dark mb-0">Amina Khan</h6>
-                            <small class="text-muted">Volunteer Coordinator</small>
+                            <h6 class="fw-bold text-dark"><i class="fas fa-shield-alt text-primary me-2"></i>Continuous Audit & Vetting</h6>
+                            <p class="small text-muted mb-0">Independent NGO vetting ensures high standards of operational integrity.</p>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- 4. Career With Us -->
-            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white" id="careerWithUs">
-                <h3 class="fw-bold text-dark mb-3"><i class="fas fa-briefcase text-primary me-2"></i>4. Career With Us</h3>
-                <p class="text-secondary">Join our team of social workers, campaign managers, and tech coordinators making a daily impact.</p>
-                <div class="list-group">
-                    <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center rounded-3 mb-2 border">
+        <!-- 3. Our Team -->
+        <div class="tab-pane fade" id="tabTeam" role="tabpanel">
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="bg-success bg-opacity-10 text-success p-3 rounded-circle">
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <div>
+                        <h3 class="fw-bold text-dark mb-0">3. Executive Leadership & Coordinators</h3>
+                        <p class="text-muted small mb-0">Dedicated professionals leading operations on the ground</p>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4 text-center">
+                        <div class="p-4 bg-light rounded-4 border h-100">
+                            <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 70px; height: 70px;">
+                                <i class="fas fa-user fa-2x"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark mb-1">Sarah Jenkins</h5>
+                            <span class="badge bg-primary bg-opacity-10 text-primary mb-2">Executive Director</span>
+                            <p class="small text-muted mb-0">15+ years in international humanitarian program management and NGO governance.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="p-4 bg-light rounded-4 border h-100">
+                            <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 70px; height: 70px;">
+                                <i class="fas fa-user-md fa-2x"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark mb-1">Dr. Tariq Mahmood</h5>
+                            <span class="badge bg-success bg-opacity-10 text-success mb-2">Medical Relief Head</span>
+                            <p class="small text-muted mb-0">Leading volunteer doctors and supervising mobile diagnostic clinics nationwide.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="p-4 bg-light rounded-4 border h-100">
+                            <div class="bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 70px; height: 70px;">
+                                <i class="fas fa-hands-helping fa-2x"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark mb-1">Amina Khan</h5>
+                            <span class="badge bg-info bg-opacity-10 text-info mb-2">Volunteer Coordinator</span>
+                            <p class="small text-muted mb-0">Managing community outreach and over 1,200 active student volunteers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Career With Us -->
+        <div class="tab-pane fade" id="tabCareer" role="tabpanel">
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="bg-warning bg-opacity-10 text-warning p-3 rounded-circle">
+                        <i class="fas fa-briefcase fa-2x"></i>
+                    </div>
+                    <div>
+                        <h3 class="fw-bold text-dark mb-0">4. Career & Volunteering Opportunities</h3>
+                        <p class="text-muted small mb-0">Join our team of social changemakers</p>
+                    </div>
+                </div>
+                <div class="list-group gap-3">
+                    <div class="list-group-item p-4 rounded-4 border shadow-sm d-flex flex-wrap justify-content-between align-items-center">
                         <div>
-                            <h6 class="mb-1 fw-bold text-dark">Field Medical Camp Coordinator</h6>
-                            <small class="text-muted">Full-time &bull; Lahore &bull; NGO Health Division</small>
+                            <h5 class="fw-bold text-dark mb-1">Field Medical Camp Coordinator</h5>
+                            <p class="small text-muted mb-0">Full-time &bull; Lahore / Multan &bull; NGO Healthcare Division</p>
                         </div>
-                        <a asp-controller="Home" asp-action="HelpCentre" class="btn btn-sm btn-outline-dark btn-pill">Apply Now</a>
+                        <a asp-controller="Home" asp-action="HelpCentre" class="btn btn-outline-dark btn-pill px-4 mt-2 mt-md-0">Apply via Help Desk</a>
                     </div>
-                    <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center rounded-3 border">
+                    <div class="list-group-item p-4 rounded-4 border shadow-sm d-flex flex-wrap justify-content-between align-items-center">
                         <div>
-                            <h6 class="mb-1 fw-bold text-dark">Community Volunteer Lead</h6>
-                            <small class="text-muted">Part-time / Volunteer &bull; Karachi &bull; Welfare Outreach</small>
+                            <h5 class="fw-bold text-dark mb-1">Community Volunteer Lead</h5>
+                            <p class="small text-muted mb-0">Part-time / Volunteer &bull; Karachi &bull; Welfare Outreach</p>
                         </div>
-                        <a asp-controller="Home" asp-action="HelpCentre" class="btn btn-sm btn-outline-dark btn-pill">Apply Now</a>
+                        <a asp-controller="Home" asp-action="HelpCentre" class="btn btn-outline-dark btn-pill px-4 mt-2 mt-md-0">Apply via Help Desk</a>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- 5. Our Achievements -->
-            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white" id="ourAchievements">
-                <h3 class="fw-bold text-dark mb-3"><i class="fas fa-trophy text-warning me-2"></i>5. Our Achievements</h3>
-                <div class="row g-3 text-center">
+        <!-- 5. Our Achievements -->
+        <div class="tab-pane fade" id="tabAchievements" role="tabpanel">
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="bg-info bg-opacity-10 text-info p-3 rounded-circle">
+                        <i class="fas fa-trophy fa-2x"></i>
+                    </div>
+                    <div>
+                        <h3 class="fw-bold text-dark mb-0">5. Our Achievements & Milestones</h3>
+                        <p class="text-muted small mb-0">Measurable impact across multiple welfare sectors</p>
+                    </div>
+                </div>
+                <div class="row g-4 text-center">
                     <div class="col-md-4">
-                        <div class="p-3 bg-light rounded-4 border">
-                            <h4 class="fw-bold text-dark mb-0">5,800,000+</h4>
-                            <small class="text-muted">Beneficiaries Reached</small>
+                        <div class="p-4 bg-light rounded-4 border">
+                            <h2 class="display-6 fw-bold text-dark mb-1">5.8M+</h2>
+                            <span class="text-secondary fw-semibold">Beneficiaries Reached</span>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="p-3 bg-light rounded-4 border">
-                            <h4 class="fw-bold text-success mb-0">120+</h4>
-                            <small class="text-muted">Health Camps Completed</small>
+                        <div class="p-4 bg-light rounded-4 border">
+                            <h2 class="display-6 fw-bold text-success mb-1">120+</h2>
+                            <span class="text-secondary fw-semibold">Free Health Camps</span>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="p-3 bg-light rounded-4 border">
-                            <h4 class="fw-bold text-primary mb-0">45+</h4>
-                            <small class="text-muted">Certified NGO Partners</small>
+                        <div class="p-4 bg-light rounded-4 border">
+                            <h2 class="display-6 fw-bold text-primary mb-1">45+</h2>
+                            <span class="text-secondary fw-semibold">Certified Partner NGOs</span>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- 6. Our Supporters -->
-            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white" id="ourSupporters">
-                <h3 class="fw-bold text-dark mb-3"><i class="fas fa-handshake text-primary me-2"></i>6. Our Supporters</h3>
-                <p class="text-secondary">We are grateful to our philanthropic partners, private donors, and civic organizations who fund operational audits and matching grants.</p>
-                <a asp-controller="Home" asp-action="Partners" class="btn btn-outline-primary btn-pill btn-sm">Explore Partner Organizations &rarr;</a>
+        <!-- 6. Our Supporters -->
+        <div class="tab-pane fade" id="tabSupporters" role="tabpanel">
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-circle">
+                        <i class="fas fa-handshake fa-2x"></i>
+                    </div>
+                    <div>
+                        <h3 class="fw-bold text-dark mb-0">6. Our Supporters & Philanthropic Backers</h3>
+                        <p class="text-muted small mb-0">Empowering transparency and long-term sustainability</p>
+                    </div>
+                </div>
+                <p class="text-secondary leading-relaxed mb-4">
+                    We are profoundly grateful to our philanthropic partners, private donors, and civic foundations who fund operational infrastructure and matching donation grants.
+                </p>
+                <a asp-controller="Home" asp-action="Partners" class="btn btn-cyan btn-pill px-4 fw-bold">
+                    View Corporate Partners &rarr;
+                </a>
             </div>
+        </div>
 
-            <!-- 7. Read About Us -->
-            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white" id="readAboutUs">
-                <h3 class="fw-bold text-dark mb-3"><i class="fas fa-book-open text-primary me-2"></i>7. Read About Us in the Media</h3>
-                <p class="text-secondary">Featured in National Philanthropy Reports and Welfare News for transparency in online donation tracking and volunteer mobilization.</p>
-                <div class="alert alert-light border rounded-4 small">
-                    <i class="fas fa-newspaper text-primary me-2"></i><strong>Annual Welfare Review:</strong> "GiveAid sets a new benchmark for accountability in multi-NGO management."
+        <!-- 7. Read About Us -->
+        <div class="tab-pane fade" id="tabMedia" role="tabpanel">
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="bg-danger bg-opacity-10 text-danger p-3 rounded-circle">
+                        <i class="fas fa-book-open fa-2x"></i>
+                    </div>
+                    <div>
+                        <h3 class="fw-bold text-dark mb-0">7. Read About Us in the Media</h3>
+                        <p class="text-muted small mb-0">Press coverage & independent humanitarian recognitions</p>
+                    </div>
+                </div>
+                <p class="text-secondary mb-4">
+                    Featured in National Philanthropy Reports and Community Welfare journals for leadership in transparent online donation matching.
+                </p>
+                <div class="alert alert-light border rounded-4 p-4">
+                    <h6 class="fw-bold text-dark mb-1"><i class="fas fa-newspaper text-primary me-2"></i>Annual Philanthropy Journal</h6>
+                    <p class="text-secondary small mb-0">"GiveAid sets a new digital benchmark for accountability and transparency in multi-NGO volunteer management."</p>
                 </div>
             </div>
         </div>

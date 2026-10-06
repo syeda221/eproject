@@ -3,53 +3,62 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - GiveAid Admin</title>
+    <title>@ViewData["Title"] - GiveAid Admin Console</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/GiveAid.styles.css" asp-append-version="true" />
     <style>
+        :root {
+            --admin-navy: #002855;
+            --admin-dark: #071e3d;
+        }
         body {
-            background-color: #f8fafc;
-            color: #334155;
+            background-color: #f1f5f9;
+            color: #1e293b;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
         .admin-nav .nav-link {
-            font-weight: 500;
-            font-size: 0.95rem;
-            color: #cbd5e1 !important;
-            padding: 0.5rem 1rem;
-            border-radius: 0.25rem;
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.82) !important;
+            padding: 0.55rem 1rem !important;
+            border-radius: 50px;
             transition: all 0.2s ease;
         }
-        .admin-nav .nav-link:hover {
-            color: #ffffff !important;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
+        .admin-nav .nav-link:hover,
         .admin-nav .nav-link.active {
             color: #ffffff !important;
-            background-color: #0d6efd;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        .admin-card {
+            background: #ffffff;
+            border: 0;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
         }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <!-- Top Admin Header / Navbar (Clean, Text Only) -->
+    <!-- Top Admin Header / Navbar (Clean, High-Contrast) -->
     <header class="sticky-top shadow-sm">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-2">
+        <nav class="navbar navbar-expand-lg navbar-dark py-2" style="background-color: #002855;">
             <div class="container">
                 <!-- Admin Brand -->
-                <a class="navbar-brand fw-bold text-white" asp-area="Admin" asp-controller="NGOs" asp-action="Index">
-                    GiveAid Admin
+                <a class="navbar-brand fw-bold text-white d-flex align-items-center gap-2" asp-area="Admin" asp-controller="NGOs" asp-action="Index">
+                    <span>Give<span style="color: #38bdf8;">Aid</span></span>
+                    <span class="badge bg-primary bg-opacity-25 text-info rounded-pill px-2 py-1 small" style="font-size: 0.7rem; letter-spacing: 0.5px;">ADMIN</span>
                 </a>
 
                 <!-- Mobile Toggler -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbarContent"
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbarContent"
                         aria-controls="adminNavbarContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <!-- Navigation Links for All Modules (Clean Plain Text) -->
                 <div class="collapse navbar-collapse" id="adminNavbarContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 admin-nav ms-lg-3">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 admin-nav ms-lg-3 gap-1">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="Admin" asp-controller="NGOs" asp-action="Index">NGOs</a>
                         </li>
@@ -72,8 +81,8 @@
 
                     <!-- Right Side: View Public Site + Logout -->
                     <div class="d-flex align-items-center gap-2">
-                        <a class="btn btn-sm btn-outline-light rounded-pill px-3" asp-area="" asp-controller="Home" asp-action="Index" target="_blank">
-                            View Website
+                        <a class="btn btn-sm btn-outline-light btn-pill px-3" asp-area="" asp-controller="Home" asp-action="Index" target="_blank">
+                            <i class="fas fa-external-link-alt me-1 small"></i> View Site
                         </a>
                         <partial name="_LoginPartial" />
                     </div>
@@ -82,6 +91,26 @@
         </nav>
     </header>
 
+    <!-- Global Toast / Alert Notifications in Admin -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="container mt-3">
+            <div class="alert alert-success alert-dismissible fade show shadow-sm border-0 rounded-3" role="alert">
+                <i class="fas fa-check-circle me-2"></i>@TempData["SuccessMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="container mt-3">
+            <div class="alert alert-danger alert-dismissible fade show shadow-sm border-0 rounded-3" role="alert">
+                <i class="fas fa-exclamation-circle me-2"></i>@TempData["ErrorMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    }
+
     <!-- Main Content Container -->
     <main role="main" class="flex-grow-1 py-4">
         <div class="container">
@@ -89,11 +118,11 @@
         </div>
     </main>
 
-    <!-- Admin Footer -->
+    <!-- Admin Clean Footer -->
     <footer class="bg-white border-top py-3 mt-auto text-muted small">
-        <div class="container d-flex justify-content-between align-items-center">
-            <div>&copy; 2026 GiveAid Portal - Admin Console</div>
-            <div>Administrator</div>
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <div>&copy; @DateTime.UtcNow.Year GiveAid Administration Panel. All rights reserved.</div>
+            <div>Secure Multi-NGO Management Console</div>
         </div>
     </footer>
 
