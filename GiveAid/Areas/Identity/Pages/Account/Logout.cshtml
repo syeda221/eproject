@@ -1,21 +1,57 @@
-﻿@page
+@page
 @model LogoutModel
 @{
-    ViewData["Title"] = "Log out";
+    ViewData["Title"] = "Signed Out";
 }
 
-<header>
-    <h1>@ViewData["Title"]</h1>
-    @{
-        if (User.Identity?.IsAuthenticated ?? false)
-        {
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
-            </form>
-        }
-        else
-        {
-            <p>You have successfully logged out of the application.</p>
-        }
-    }
-</header>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-7 col-lg-5">
+            <div class="card border-0 shadow-sm rounded-4 text-center overflow-hidden">
+                <div class="card-header bg-dark text-white py-4 border-0">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-primary text-white rounded-circle mb-2" style="width: 54px; height: 54px; font-size: 1.5rem;">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </div>
+                    <h3 class="fw-bold mb-1">Give<span class="text-primary">Aid</span></h3>
+                    <p class="text-white-50 small mb-0">Account Session</p>
+                </div>
+
+                <div class="card-body p-4 p-md-5 bg-white">
+                    @{
+                        if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            <h4 class="fw-bold text-dark mb-2">Ready to Leave?</h4>
+                            <p class="text-muted small mb-4">Click below to securely end your current session.</p>
+                            <form class="d-grid gap-2" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                                <button type="submit" class="btn btn-danger btn-lg fw-semibold">
+                                    <i class="fas fa-sign-out-alt me-1"></i> Confirm Sign Out
+                                </button>
+                                <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">
+                                    Cancel & Return
+                                </a>
+                            </form>
+                        }
+                        else
+                        {
+                            <div class="mb-3 text-success" style="font-size: 3rem;">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h4 class="fw-bold text-dark mb-2">Signed Out Successfully</h4>
+                            <p class="text-muted small mb-4">
+                                You have safely logged out of your GiveAid account. Thank you for being a valued part of our welfare community!
+                            </p>
+                            <div class="d-grid gap-2">
+                                <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-primary btn-lg fw-semibold">
+                                    <i class="fas fa-sign-in-alt me-1"></i> Sign In Again
+                                </a>
+                                <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">
+                                    Return to Home
+                                </a>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
