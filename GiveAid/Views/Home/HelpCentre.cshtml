@@ -1,17 +1,17 @@
 @model GiveAid.Models.QueryFormViewModel
 @{
-    ViewData["Title"] = "Help Centre & Contact Us - Give-AID";
+    ViewData["Title"] = "Help Centre & Contact Us - GiveAid";
 }
 
-<div class="container py-5">
+<div class="container py-4 py-md-5">
     <!-- Header -->
-    <div class="card border-0 shadow-sm rounded-4 bg-primary text-white p-4 p-md-5 mb-5 text-center">
-        <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold text-uppercase mb-3 align-self-center">
+    <div class="card border-0 shadow-sm rounded-4 text-white p-4 p-md-5 mb-5 text-center" style="background: linear-gradient(135deg, #001f3f 0%, #002855 100%);">
+        <span class="badge bg-cyan text-white px-3 py-2 rounded-pill fw-bold text-uppercase mb-3 align-self-center">
             <i class="fas fa-question-circle me-1"></i> 24/7 Donor & NGO Support
         </span>
         <h1 class="display-5 fw-bold mb-2">Help Centre & Query Desk</h1>
         <p class="lead text-white-50 mx-auto mb-0" style="max-width: 700px;">
-            Have questions regarding making donations, registering your NGO, or participating in welfare events? We are here to help!
+            Have questions regarding making donations, registering your NGO, or participating in volunteer drives? We are here to assist!
         </p>
     </div>
 
@@ -20,28 +20,28 @@
         <div class="col-lg-6">
             <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white h-100">
                 <h3 class="fw-bold text-dark mb-2"><i class="fas fa-envelope text-primary me-2"></i>Raise a Query / Contact Us</h3>
-                <p class="text-muted small mb-4">Send us your question or suggestion. Our administrative team will review and address it promptly.</p>
+                <p class="text-secondary small mb-4">Send us your inquiry, cause suggestion, or feedback. Our administrative team will review and address it promptly.</p>
 
                 <form asp-controller="Home" asp-action="SubmitQuery" method="post">
                     @Html.AntiForgeryToken()
 
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Your Full Name <span class="text-danger">*</span></label>
+                        <label class="form-label small fw-semibold text-secondary">Your Full Name <span class="text-danger">*</span></label>
                         <input type="text" asp-for="FullName" class="form-control" placeholder="e.g. Alex Robinson" required />
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Your Email Address <span class="text-danger">*</span></label>
+                        <label class="form-label small fw-semibold text-secondary">Your Email Address <span class="text-danger">*</span></label>
                         <input type="email" asp-for="Email" class="form-control" placeholder="alex@example.com" required />
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label fw-semibold">Your Message / Query <span class="text-danger">*</span></label>
+                        <label class="form-label small fw-semibold text-secondary">Your Message / Query <span class="text-danger">*</span></label>
                         <textarea asp-for="Message" class="form-control" rows="5" placeholder="Write your question, cause inquiry, or feedback here..." required></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold py-3 shadow-sm">
-                        <i class="fas fa-paper-plane me-2"></i>Submit Query to Give-AID
+                    <button type="submit" class="btn btn-cyan btn-pill btn-lg w-100 fw-bold py-3 shadow">
+                        Submit Query to GiveAid
                     </button>
                 </form>
             </div>
@@ -53,64 +53,64 @@
                 <h3 class="fw-bold text-dark mb-3"><i class="fas fa-lightbulb text-warning me-2"></i>Frequently Asked Questions</h3>
                 
                 <div class="accordion accordion-flush" id="faqAccordion">
-                    <div class="accordion-item">
+                    <div class="accordion-item rounded-3 mb-2 border">
                         <h2 class="accordion-header" id="faq1">
                             <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
                                 How is my donation utilized?
                             </button>
                         </h2>
                         <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body text-muted small">
+                            <div class="accordion-body text-secondary small">
                                 100% of your chosen donation amount is directly transferred to verified partner NGOs working on the specific cause (e.g., Children education, disabled aid, medical camps).
                             </div>
                         </div>
                     </div>
 
-                    <div class="accordion-item">
+                    <div class="accordion-item rounded-3 mb-2 border">
                         <h2 class="accordion-header" id="faq2">
                             <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                                How can a new NGO join Give-AID?
+                                How can a new NGO join GiveAid?
                             </button>
                         </h2>
                         <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body text-muted small">
+                            <div class="accordion-body text-secondary small">
                                 NGOs can register via our admin portal or submit an inquiry using the query form on this page with legal registration certificates.
                             </div>
                         </div>
                     </div>
 
-                    <div class="accordion-item">
+                    <div class="accordion-item rounded-3 mb-2 border">
                         <h2 class="accordion-header" id="faq3">
                             <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
                                 Can I volunteer in upcoming welfare camps?
                             </button>
                         </h2>
                         <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body text-muted small">
-                                Yes! Visit our Home page and click "Join as Volunteer" under any upcoming NGO welfare programme to register your interest.
+                            <div class="accordion-body text-secondary small">
+                                Yes! Visit our Home page and click "Volunteer for this Drive" under any upcoming NGO welfare programme to register your interest instantly.
                             </div>
                         </div>
                     </div>
 
-                    <div class="accordion-item">
+                    <div class="accordion-item rounded-3 border">
                         <h2 class="accordion-header" id="faq4">
                             <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
                                 Is payment information secure?
                             </button>
                         </h2>
                         <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body text-muted small">
-                                All payment gateways on Give-AID use state-of-the-art encryption with end-to-end security protocols.
+                            <div class="accordion-body text-secondary small">
+                                All payment transactions on GiveAid use end-to-end industry encryption standards to keep your financial information completely private and secure.
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Contact Details -->
-                <div class="mt-4 p-3 bg-light rounded-3">
+                <div class="mt-4 p-3 bg-light rounded-4 border">
                     <h6 class="fw-bold mb-2 text-dark"><i class="fas fa-phone-volume text-success me-2"></i>Direct Support Hotlines</h6>
                     <p class="small text-muted mb-1"><i class="fas fa-envelope text-primary me-2"></i>Email: <strong>support@giveaid.org</strong></p>
-                    <p class="small text-muted mb-0"><i class="fas fa-phone text-success me-2"></i>Phone: <strong>+1 (800) 555-GIVE</strong> (Mon - Sat, 9am - 6pm)</p>
+                    <p class="small text-muted mb-0"><i class="fas fa-phone text-success me-2"></i>Phone: <strong>+1 (800) 555-4483</strong> (Mon - Sat, 9am - 6pm)</p>
                 </div>
             </div>
         </div>

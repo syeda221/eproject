@@ -20,14 +20,14 @@ namespace GiveAid.Controllers
         }
 
         // GET: /Donate
-        public async Task<IActionResult> Index(int? causeId)
+        public async Task<IActionResult> Index(int? causeId, decimal? amount)
         {
             var causes = await _context.Causes.ToListAsync();
             var model = new DonationFormViewModel
             {
                 AvailableCauses = causes,
                 CauseId = causeId ?? (causes.FirstOrDefault()?.Id ?? 0),
-                Amount = 1000 // Default suggestion in PKR
+                Amount = amount.HasValue && amount.Value > 0 ? amount.Value : 1000 // Pre-filled or default suggestion in PKR
             };
 
             return View(model);

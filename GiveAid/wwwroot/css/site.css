@@ -1,5 +1,21 @@
+/* GiveAid Modern Design System - Inspired by Clean Humanitarian Web Standards */
+:root {
+  --giveaid-navy: #002855;
+  --giveaid-dark: #071e3d;
+  --giveaid-teal: #005f73;
+  --giveaid-cyan: #00a8cc;
+  --giveaid-blue: #0284c7;
+  --giveaid-crimson: #7e1935;
+  --giveaid-forest: #134e4a;
+  --giveaid-light: #f8fafc;
+  --giveaid-gray: #64748b;
+  --giveaid-border: #e2e8f0;
+}
+
 html {
-  font-size: 14px;
+  font-size: 15px;
+  position: relative;
+  min-height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -8,24 +24,270 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #1e293b;
+  -webkit-font-smoothing: antialiased;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* Fix footer layout: Main stretches to push footer to bottom */
+main[role="main"] {
+  flex: 1 0 auto;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+footer {
+  flex-shrink: 0;
+  margin-bottom: 0 !important;
+}
+
+/* Typography & Links */
+a {
+  color: var(--giveaid-blue);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--giveaid-cyan);
+}
+
+/* Custom Buttons */
+.btn-pill {
+  border-radius: 50px !important;
+  padding: 0.6rem 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.25s ease-in-out;
+}
+
+.btn-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.btn-cyan {
+  background-color: #00a8cc;
+  border-color: #00a8cc;
+  color: #ffffff;
+}
+
+.btn-cyan:hover {
+  background-color: #0090b0;
+  border-color: #0090b0;
+  color: #ffffff;
+}
+
+.btn-crimson {
+  background-color: #7e1935;
+  border-color: #7e1935;
+  color: #ffffff;
+}
+
+.btn-crimson:hover {
+  background-color: #64132a;
+  border-color: #64132a;
+  color: #ffffff;
+}
+
+.btn-forest {
+  background-color: #134e4a;
+  border-color: #134e4a;
+  color: #ffffff;
+}
+
+.btn-forest:hover {
+  background-color: #0f3f3c;
+  border-color: #0f3f3c;
+  color: #ffffff;
+}
+
+.btn-outline-pill-light {
+  border-radius: 50px !important;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  color: #ffffff;
+  padding: 0.55rem 1.7rem;
+  font-weight: 600;
+}
+
+.btn-outline-pill-light:hover {
+  background-color: #ffffff;
+  color: var(--giveaid-navy);
+}
+
+/* Navbar */
+.giveaid-navbar {
+  background-color: var(--giveaid-navy) !important;
+}
+
+.giveaid-navbar .nav-link {
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: rgba(255, 255, 255, 0.85) !important;
+  padding: 0.6rem 1rem !important;
+  transition: color 0.2s ease;
+}
+
+.giveaid-navbar .nav-link:hover,
+.giveaid-navbar .nav-link.active {
+  color: #38bdf8 !important;
+}
+
+/* Teal Pillar Cards */
+.pillar-card {
+  background-color: #005f73;
+  color: #ffffff;
+  border-radius: 24px;
+  padding: 2.2rem 1.8rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pillar-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 95, 115, 0.25);
+}
+
+.pillar-card .pillar-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.pillar-card .pillar-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 1.5rem;
+}
+
+/* Donation Widget Styles */
+.donation-box {
+  background: #ffffff;
+  border: 1px solid var(--giveaid-border);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.donation-preset-btn {
+  border-radius: 50px;
+  border: 1.5px solid #002855;
+  color: #002855;
+  font-weight: 700;
+  padding: 0.5rem 1.2rem;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.donation-preset-btn:hover,
+.donation-preset-btn.active {
+  background-color: #002855;
+  color: #ffffff;
+}
+
+.donation-type-btn {
+  border-radius: 50px;
+  border: 1.5px solid #002855;
+  color: #002855;
+  font-weight: 700;
+  padding: 0.5rem 1.5rem;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.donation-type-btn.active {
+  background-color: #002855;
+  color: #ffffff;
+}
+
+/* Crimson Impact Bar */
+.crimson-banner {
+  background-color: #7e1935;
+  color: #ffffff;
+  padding: 3.5rem 1rem;
+}
+
+/* Forest CTA Bar */
+.forest-banner {
+  background-color: #134e4a;
+  color: #ffffff;
+  padding: 3.5rem 1rem;
+}
+
+/* Rounded Story Avatar */
+.story-card {
+  border-radius: 20px;
+  overflow: hidden;
+  background: #002855;
+  color: #ffffff;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.story-card:hover {
+  transform: translateY(-5px);
+}
+
+.story-img-container {
+  height: 180px;
+  overflow: hidden;
+}
+
+.story-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.story-card:hover .story-img-container img {
+  transform: scale(1.05);
+}
+
+/* Clean Footer */
+.clean-footer {
+  background-color: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  color: #334155;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+.clean-footer .social-pill {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #002855;
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.clean-footer .social-pill:hover {
+  background-color: #00a8cc;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.clean-footer-bottom {
+  background-color: #002855;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  padding: 1rem 0;
 }
